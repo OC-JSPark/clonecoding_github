@@ -1,0 +1,302 @@
+body {
+    /*4. 글꼴지정.
+    body tag 밑에 해당 글꼴이 상속됨! 
+    font-weight 기본을 300/700중에 300으로 선택함*/
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+
+}
+
+header {
+    
+    position: relative;
+}
+/*
+4-1-2 ~ 4-1-3.
+header안에 container라는 tag를 가지고 있는 요소는 안에있는
+navigaion와 logo를 수평정렬하기 위해서 display: flex로 구현
+정렬배울때 정렬시키고자 하는 item의 부모요소 부분에다가 display:flex로 추가하면된다
+이러면 안에 있는 자식요소가 수평정렬이 된다.
+aling-items 를 통해서 수직정렬구현.
+padding-top을 통해서 요소의 밑쪽 위쪽여백
+
+이때 css말고 utility기능가지고도 비슷한 기능구현가능.
+header .container {
+    display: flex;
+}
+*/
+
+/*
+4-2-1-1. header의 후손이면서 forms라는 클래스를 가지고 있는 요소의 후손인
+input 태그를 가지고 있고 form-control이라는 클래스선택자를 가지고있는 요소
+rgba : 색상자체를 투명도 갖게해준다.
+a는 알파라고해서 투명도를 가리킨다. 
+0.15에서 앞에 0은 생략가능하므로 .15만 넣을수 있다
+투명도는 0~1사이값이다.
+*/
+header .forms input.form-control {
+    color: white ;
+    background-color: rgba(255,255,255,.15);
+    border-color: rgba(255,255,255,.3);
+}
+
+/* 4-2-1-2.가상요소선택자
+: 가상클래스 선택자
+:: 가상요소 선택자 : 가상의 요소를 제어해주는 놈!
+placeholder는 "힌트"를 의미한다.즉. 힌트의 스타일을 명시한다. */
+header .forms input.form-control ::placeholder{
+    color: rgba(255,255,255,.6);
+}
+
+/*10-1 반응형 버튼만들기
+크기 줄어들면 버튼 나타나게 만들어보자.
+아래는 css의 속성선택자를 활용하는법.*/
+header [data-bs-toggle="offcanvas"] {
+  display: none;
+}
+/*10-2 해당 버튼이 그럼 이게 언제나타나게 되냐? 
+그건 미디어쿼리를 만들어서 조건을 걸어주자.
+display : block 해당요소가 블록으로 보여줘라.
+display : none  그때 header .nav는 사라지게 해라.
+
+선택자를 콤마로 해서 하나로 묶어줄수있다.(다중선택자)
+*/
+/*10-3
+text-decoration : 글자에 줄그어줄때 쓰는 속성
+hover : 마우스 올릴때 반응하기
+*/
+header .offcanvas .list-group-item{
+  padding: 16px
+}
+header .offcanvas .list-group-item a{
+  color: black;
+  text-decoration: none;
+}
+header .offcanvas .list-group-item a:hover{
+  text-decoration: underline;
+}
+@media (max-width:992px) {
+  header .logo{
+    flex-grow:1;
+  }
+  header .nav,
+  header .forms input.form-control,
+  header .forms .btn-link {
+    display: none;
+  }
+
+  header [data-bs-toggle="offcanvas"] {
+    display: block;
+  }
+}
+
+
+/* 5-2-1-1. 이미지와 text를 겹쳐서 보이게 하기*/
+section.hero{
+    background-color: #040d22;
+    position: relative;
+    overflow: hidden;
+}
+
+section.hero .container{
+    padding-top: 160px;
+    padding-bottom: 160px;
+    position: relative;
+}
+
+
+section.hero img.globe{
+    width: 900px;
+    position: absolute;
+    top: -5%;
+    left: 46%;
+}
+
+section.hero img.glow{
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+section.hero .curve{
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+}
+
+/* 5-1-1-1. headline 꾸며주기
+letter-spacing: 글자와 글자사이의 간격 지정*/
+section.hero .headline h1 {
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: -2px;
+  }
+  section.hero .headline p {
+    font-size: 26px;
+  }
+
+  /*6-1 유뷰트 영상꾸며주기
+  border-radius : 모서리 둥글게 깍아주기
+  astronaut 배치해보자 */
+  section.youtube {
+  
+  }
+  section.youtube .container{
+    padding-top: 90px;
+    padding-bottom: 70px;
+    position: relative;
+  }
+  section.youtube img.astronaut{
+    width: 480px;
+    position: absolute;
+    top: -420px;
+    right: 0;
+  }
+  section.youtube .ratio{
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: black;
+  }
+  /*11. 반응형column 꾸미기 */
+  @media (max-width:768px) {
+    section.youtube img.astronaut{
+      display: none;
+    }
+  }
+
+  /* 7-1. 카드모양만들기
+  padding: A, B 
+  A는 위아래지정
+  B는 좌우지정가능*/
+  section.features{
+
+  }
+  section.features .container{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  section.features .card {
+    color: #627597;
+    border: none;
+  }
+  section.features .card img {
+    padding: 30px 60px;
+  }
+  @media (max-width:576px) {
+    section.features .card img{
+      padding:20px,30px;
+    }
+  }
+
+  /*8. 맵 꾸미기
+  section.map 이라고 적어도 되지만 
+  id이므로 고유한값이다. #map이라 적어도 된다.
+  div로 만들었기 때문에 가로는 최대한 늘어나려고할것이다.
+  z-index : z축설정, default=0인데 이걸 1로 주면 
+  약간 띄워져서 이미지보다 위에 쌓을수 있다.
+  */
+  section.map .container {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    color: #627597;
+  }
+  section.map h1 {
+    font-weight: 700;
+    font-size: 44px;
+  }
+  section.map p {
+    font-size: 24px;
+  }
+
+  #map {
+    height: 500px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 10px;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  /*9. footer 꾸미기
+  transform:scale(-1,1) : 위아래 화면 반전시키기
+  hover : 마우스 올리면 글자색상바뀌기
+  text-decoration: none; 밑줄제거
+  transition : 전환효과로서 몇초지나면 자연스럽게 바뀔것인지 지정.
+  
+  display: flex;  : 해당 li 태그가 수평이 되었으면 좋으니 설정.
+  justify-content: center; 가운데 정렬 
+  flex-wrap: wrap; : 줄바꿈처리가 가능하도록 flex쓸때 쓰는기능.
+  footer .site-links li:last-child 마지막 자식요소가 li태그일때
+                                  해당 여백 조정하려고 만들어줌!
+  
+                                  */
+
+footer {
+  background-color: #040D22;
+  position: relative;
+  margin-top: 20%;
+}
+footer .curve {
+  width: 100%;
+  transform: scaleY(-.5) translateY(50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+footer .container {
+
+}
+footer img.illustration {
+  width: 100%;
+  margin-top: -33%;
+  margin-bottom: 50px;
+  transform: scale(-1,1);
+}
+footer img.logo {
+  opacity: .4;
+}
+footer h5 {
+  font-weight: 700;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 20px;
+}
+footer ul li {
+  margin-bottom: 10px;
+}
+footer ul li a {
+  color: rgba(255,255,255,.4);
+  text-decoration: none;
+  transition: .3s;
+}
+footer ul li a:hover {
+  color: white;
+}
+footer .site-links {
+  margin: 0; /* Bootstrap을 통해 적용된 여백 초기화 */
+  margin-top: 60px;
+  padding: 20px;
+  background-color: rgba(255,255,255,.05);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+footer .site-links li {
+  color: rgba(255,255,255,.4);
+  margin: 0;
+  margin-right: 20px;
+}
+footer .site-links li:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 992px) {
+  footer {
+    text-align: center;
+  }
+  footer img.logo {
+    margin-bottom: 50px;
+  }
+}

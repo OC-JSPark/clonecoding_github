@@ -1,0 +1,388 @@
+<!-- 반응형구조 : 화면크기 확대/축소시에 따라 해당 요소들이 자동으로 확대/축소되는것. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github</title>
+
+    <!-- 1. favicon : favorite icon : 즐겨찾기 아이콘 설정
+    stylesheet은 css파일 가져오는경우
+    icon : icon파일 가져오기-->
+    <link rel="icon" href="./favicon.png">  
+
+    <!-- 2. bootstrap 연결 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <!-- 3. Google 폰트 적용 
+    Poppins, 300/700 적용-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./main.css">
+
+
+        <!-- 8-1. map연동
+            const통해서 하나의 변수지정(myLatLng), lat은 위도, lng는 경도의미.
+            이걸 하나의 객체데에터로 할당하여 첫번쨰 key로 lat, 두번째 key로 lng로 저장
+
+            변수를 만들었으니 new라는 생성자를 통해서 구글맵스의 Map 메소드를 실행.
+            Map이라는 메소드의 첫번째 인수로는 document 객체의 getElementById 메소드로 
+            html부분의 map이라는 id를 가지고있는 요소를 찾는다.거기다가 해당하는 지도를
+            삽입하겠다는 의미. 그리고 콤마후 해당 옵션명시.
+            center에는 위에 지정한 변수(즉, 위도,경도를 넣겠다)를 할당
+            scrollwheel이라는 옵션을 통해서 지도위에서 scroll움직였을때 확대/축소 사용안하겠다는의미
+            기본적인 옵션지정후 생성자함수로 인스턴스생성.
+
+            marker라는 변수에 new라는 키워드로 생성자를 통해 google.maps의 마커 메소드 실행
+            marker의 위치는 위에 만든 변수로 지정.
+            map은 위에만든 google.maps의 map이라는 생성자 만든걸 인스턴스 한거를 적용시켜줌.
+            그리고 지도에 표시될(marker) 제목은 github로 지정.
+
+    <script>
+        // Initialize Google Map.
+        function initMap() {
+            const myLatLng = {
+            lat: 37.782293,
+            lng: -122.391240
+            }
+            const map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            scrollwheel: false,
+            zoom: 18
+            })
+            const marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'GitHub'
+            })
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTQIlxBn5AfKGvsfJiormAE1esN3fcCkg&callback=initMap" async defer></script> -->
+
+</head>
+<body>
+
+    <!-- 5. hero content 만들기
+    section : html에 존재하는 tag이다.단순히 특정영역지칭함.
+            div도 사용가능하지만 의미적으로 구분하기 위해사용.
+    h1 : 제목
+    p : 설명 -->
+    <section class="hero">
+        <!-- 5-2-1. 이미지 넣고 배치하기 -->
+        <img class="globe" src="./images/hero-globe.jpg" alt="Globe">
+        <img class="glow"src="./images/hero-glow.svg" alt="Glow">
+        
+
+
+        <!-- 4. 세션나누기(1_header, 2_hero content, 3_footer)
+        4-1. header
+            로고만들기
+                기능)메인페이지로 이동하기
+                    : 페이지 이동할때 html의 <a> 태그(anchor) 사용 -->
+        <header>
+            <!-- 4-1-2. bootstrap utilities 이용하여 navigation과 log 수평정렬하기
+                    me : utilities > spacing에서 margin과 end를 뜻한다.
+                    flex : 부모에다가 설정하면 자식요소가 수평정렬된다.
+                    flex-grow-비율 : 최대한 많은영역을 늘려서 사용할만큼의 비율을 지정 -->
+            <div class="container d-flex align-items-center py-3">
+
+                <a class="logo me-2" href="#">
+                    <img src="./images/header-logo.svg" alt="Github Logo">
+                </a>
+                <!-- 4-1-1. bootstrap component이용하여 항목만들기 
+                                navs and tabs 이용-->
+
+                <ul class="nav flex-grow-1">
+                    <li class="nav-item">
+                        <!-- 4-1-3. 글자색깔바꾸기 utilities > color에서 text-light이용 -->
+                        <a href="#" class="nav-link text-light">Personal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light">Open Source</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light">Business</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light">Explore</a>
+                    </li>
+                </ul>
+                
+                <!-- 4-2-1. header의 검색입력과 버튼만들기
+                    btn-link : 배경이 없는 버튼
+                    btn-outline : 테두리있는거
+                    d-flex : 부모에 지정하면 자식요소들이 수평정렬된다.
+                    flex-shrink-0 : 감소너비 사용하지 않음을 지정.
+                    감소너비 : 언제든 감소할수 있는 비율. 기본이 1이다
+                            감소되서 모양이 변하는걸 원치 않으므로 0으로 바꾸는것
+                    text-decoration : text에 줄 넣는기능-->
+                <div class="forms d-flex">
+                    <input type="text" class="form-control me-2" placeholder="Search Github">
+                    <button class="btn btn-link text-light flex-shrink-0 me-2 text-decoration-none">Sign in</button>
+                    <button class="btn btn-outline-light flex-shrink-0">Sign up</button>
+                </div>
+
+                <!-- 10.반응형 offcanvas 만들기 : navigation 일종이다.(햄버거버튼 ㅋㅋ)
+                https://getbootstrap.com/docs/5.3/components/offcanvas/
+               -->
+                <button class="btn ms-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
+                  <img src="./images/menu.svg" alt="Menu Icon">
+
+                </button>
+                <div class="offcanvas offcanvas-end" id="offcanvas">
+                   <div class="offcanvas-header">
+                      <!--x버튼 눌렀을때 bootstrap의 js를 통해서 offcanvas
+                      닫아줄수 있다.-->
+                      <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+                   </div>
+                   <div class="offcanvas-body">
+                    <!--nav-item목록들이 들어와야한다. 이걸 list group 으로 해보자
+                    https://getbootstrap.com/docs/5.3/components/list-group/
+                    https://getbootstrap.com/docs/5.3/components/list-group/#flush
+                    flush기능사용해서 밑줄없는 형식으로 만들것이다.
+                  -->
+                    <ul class="list-group list-group-flush mb-4">
+                      <li class="list-group-item">
+                        <a href="#">Personal</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="#">Open source</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="#">Business</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="#">Explore</a>
+                      </li>
+                    </ul>
+                    <input type="text" class="form-control mb-2" placeholder="Seach Github">
+                    <!--버튼은 최대한 늘어나려고 시도하지 않는다.근데 최대한 늘어나게 해주려면
+                    .d-grid 라는 클래스를 가지고 있는 div 내부에 요소를 만드는것이다.-->
+                    <div class="d-grid mb-2">
+                      <button class="btn btn-outline-primary">Sign in</button>
+                    </div>
+                    <div class="d-grid">
+                      <button class="btn btn-primary">Sign up</button>
+                    </div>
+                   </div>
+                </div>
+
+
+            </div>
+        </header>
+<!-- 5-1-1.headline 넣기 
+그후 form만들어서 버튼넣기
+그후 배치하기
+row밑에 자식으로 col줘서 배치하면된다.
+d-grid : 해당 클래스를 만들면 안에있는것이 최대한 늘어나게된다-->
+        <div class="container">
+            <div class="row">
+              <!--11. 뷰포트 크기가 라지사이즈 이상일떄는 headline은
+              7개의 컬럼을 사용하게 되고, 이하일때는 12개의 컬럼을 다 사용한다.
+            즉, headline이 한줄에 꽉찰수 있게 된다.-->
+              <div class="col-lg-7 col-12">
+                <div class="headline">
+                  <h1 class="text-white">Where the world builds software</h1>
+                  <p class="text-white-50">Millions of developers and companies build, ship, and maintain their software on GitHub—the largest and most advanced development platform in the world.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-12">
+                    <form>
+                        <input type="text" class="form-control-lg mb-3" placeholder="Email addres">
+                        <input type="password" class="form-control-lg mb-3" placeholder="Password">
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg">Sign up for Github</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5-2-2. 추가이미지 넣기 -->
+        <img class="curve" src="./images/curve.svg" alt="Curve">
+
+    </section>
+
+            <!-- 6. 유부트영상연결(반응형으로 비율조절가능)
+        부트스트랩에서 16:9로 자동으로해주는 기능있음.
+        https://getbootstrap.com/docs/5.3/helpers/ratio/
+        helpers>raio에서 조절가능 
+        section 만들고 container로 감싸주자 -->
+    <section class="youtube">
+        <div class="container">
+          <!-- 뷰포트이미지 작아지면 안보이게 해주자. -->
+            <img class="astronaut" src="./images/hero-astronaut.svg" alt="Astronaut">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/2m9nUP-e8Co" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 카드만들기
+        https://getbootstrap.com/docs/5.3/utilities/borders/
+        https://getbootstrap.com/docs/5.3/components/card/
+    - 중앙정렬
+    - 선이 container부여가 아닌 section전체에 부여됨
+    - 배치 (row,col 사용) 
+    - border : css사용안하고 선그어주는 클래스임.-->
+    <section class="features border-top border-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <div class="card">
+                <img class="card-img-top" src="./images/features-build.png" alt="Build">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><strong>For everything you build</strong></h5>
+                  <p class="card-text">Host and manage your code on GitHub. You can keep your work private or share it with the world.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="card">
+                <img class="card-img-top" src="./images/features-work.png" alt="Work">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><strong>A better way to work</strong></h5>
+                  <p class="card-text">From hobbyists to professionals, GitHub helps developers simplify the way they build software.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="card">
+                <img class="card-img-top" src="./images/features-projects.png" alt="Projects">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><strong>Millions of projects</strong></h5>
+                  <p class="card-text">GitHub is home to millions of open source projects. Try one out or get inspired to create your own.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="card">
+                <img class="card-img-top" src="./images/features-platform.png" alt="Platform">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><strong>One platform, from start to finish</strong></h5>
+                  <p class="card-text">With hundreds of integrations, GitHub is flexible enough to be at the center of your development process.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. 맵만들기
+      이때는 단순히 html,css만으로는 안되고 javascript기능이 들어가야한다.
+        id선택자는 #으로 시작하면된다. 
+        javascript에서 제공하는 지도api를 가져오자.
+        shadow를 줘서 그림자 생성도 하자.
+    
+        구글map API에 쿼리스트링이라고 해서 주소부분에
+        데이터를 태워서 전송가능.
+        key에 인증할수있는 파라미터 전송, &은 다음파라미터이고, 
+        initmap은 전역함수를 가르킨다. -->
+
+      <section class="map">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-12">
+              <h1>Where is GitHub?</h1>
+              <p>GitHub is where people build software. More than 18 million people use GitHub to discover, fork, and contribute to over 48 million projects.</p>
+            </div>
+            <div class="col-lg-8 col-12">
+              <div id="map" class="shadow">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3576.4682727362647!2d-122.39309942040764!3d37.78267513336626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807f619a62df%3A0x491ce2f73977af35!2sGitHub!5e0!3m2!1sko!2skr!4v1667199132180!5m2!1sko!2skr" style="width: 100%; height: 100%; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. footer만들기
+        https://getbootstrap.com/docs/5.3/content/typography/#unstyled
+        <ul>에서 지정된 리스트의 형식을 모두 초기화해주는 기능.
+        그리고 css에서 원하는 스타일로 꾸며주면 된다.
+
+      일러스트 삽입후 굴곡진형태 만들기
+      그리고 맨아래의 카피라이트도 넣기
+      container는 특정한 영역을 가운데로 정렬해주는 역할한다.
+
+      <ul>,<li> 태그가 들어간다.
+        <ul>태그는 순서가 없는 html 리스트를 정의할때 사용한다.
+          ul = unorder list
+      <ul>,<li>,<a> 태그가 순서로 있으니 a태그는 링크연결하는놈이다.
+        -->
+      <footer>
+        <img class="curve" src="./images/curve.svg" alt="Curve">
+        <div class="container">
+          <img class="illustration" src="./images/footer-illustration.webp" alt="Illustration">
+          <div class="row">
+            <div class="col-lg-4 col-12">
+              <img class="logo" src="./images/footer-logo.svg" alt="Logo">
+            </div>
+            <div class="col-lg-2 col-md-3 col-6">
+              <h5>Product</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Enterprise</a></li>
+                <li><a href="#">Customer stories</a></li>
+                <li><a href="#">The ReadME Project</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Roadmap</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 col-md-3 col-6">
+              <h5>Platform</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Developer API</a></li>
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Atom</a></li>
+                <li><a href="#">Electron</a></li>
+                <li><a href="#">GitHub Desktop</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 col-md-3 col-6">
+              <h5>Support</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Community Forum</a></li>
+                <li><a href="#">Professional Services</a></li>
+                <li><a href="#">Learning Lab</a></li>
+                <li><a href="#">Status</a></li>
+                <li><a href="#">Contact GitHub</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 col-md-3 col-6">
+              <h5>Company</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">DI&B</a></li>
+                <li><a href="#">Social Impact</a></li>
+                <li><a href="#">Shop</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <ul class="site-links list-unstyled">
+          <li>© 2021 GitHub, Inc.</li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Site Map</a></li>
+          <li><a href="#">What is Git?</a></li>
+        </ul>
+        
+      </footer>
+
+</body>
+</html>
+
+
